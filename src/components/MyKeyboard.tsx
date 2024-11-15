@@ -46,16 +46,12 @@ export default function MyKeyboard() {
     }
     if (firstNumber.length > 5 && firstNumber.length < 8) {
       return (
-        <Text style={[Styles.screenFirstNumber, { fontSize: 70 }]}>
-          {firstNumber}
-        </Text>
+        <Text style={[Styles.screenFirstNumber, { fontSize: 70 }]}>{firstNumber}</Text>
       );
     }
     if (firstNumber.length > 7) {
       return (
-        <Text style={[Styles.screenFirstNumber, { fontSize: 50 }]}>
-          {firstNumber}
-        </Text>
+        <Text style={[Styles.screenFirstNumber, { fontSize: 50 }]}>{firstNumber}</Text>
       );
     }
   };
@@ -78,6 +74,18 @@ export default function MyKeyboard() {
       case "/":
         clear();
         setResult(parseInt(secondNumber) / parseInt(firstNumber));
+        break;
+      case "sin":
+        clear();
+        setResult(Math.sin(parseFloat(firstNumber) * Math.PI / 180)); // Convert to radians
+        break;
+      case "cos":
+        clear();
+        setResult(Math.cos(parseFloat(firstNumber) * Math.PI / 180)); // Convert to radians
+        break;
+      case "tan":
+        clear();
+        setResult(Math.tan(parseFloat(firstNumber) * Math.PI / 180)); // Convert to radians
         break;
       default:
         clear();
@@ -137,6 +145,12 @@ export default function MyKeyboard() {
         <Button title="0" onPress={() => handleNumberPress("0")} />
         <Button title="⌫" onPress={() => setFirstNumber(firstNumber.slice(0, -1))} />
         <Button title="=" isBlue onPress={() => getResult()} />
+      </View>
+      <View style={Styles.row}>
+        {/* Các nút mới cho sin, cos, tan */}
+        <Button title="sin" onPress={() => handleOperationPress("sin")} />
+        <Button title="cos" onPress={() => handleOperationPress("cos")} />
+        <Button title="tan" onPress={() => handleOperationPress("tan")} />
       </View>
     </View>
   );
