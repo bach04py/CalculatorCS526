@@ -3,24 +3,34 @@ import Button from "./Button";
 import { View, Text, ScrollView } from "react-native";
 import { Styles } from "../styles/GlobalStyles";
 import { myColors } from "../styles/Colors";
+import HistoryService from "../services/historyService";
 
 export default function MyKeyboard() {
   const [firstNumber, setFirstNumber] = React.useState("");
   const [secondNumber, setSecondNumber] = React.useState("");
   const [operation, setOperation] = React.useState("");
   const [result, setResult] = React.useState<Number | null>(null);
-  const [history, setHistory] = React.useState<string[]>([]);
 
   const handleNumberPress = (buttonValue: string) => {
+    if (result !== null) {
+      setResult(null);
+    }
     if (firstNumber.length < 10) {
       setFirstNumber(firstNumber + buttonValue);
     }
   };
 
   const handleOperationPress = (buttonValue: string) => {
-    setOperation(buttonValue);
-    setSecondNumber(firstNumber);
     setFirstNumber("");
+    if (result !== null) {
+      setSecondNumber(result.toString());
+      setOperation(buttonValue);
+      setResult(null);
+    } else {
+      setOperation(buttonValue);
+      setSecondNumber(firstNumber);
+      //setFirstNumber("");
+    }
   };
 
   const clear = () => {
@@ -31,7 +41,7 @@ export default function MyKeyboard() {
   };
 
   const addToHistory = (calculation: string) => {
-    setHistory([...history, calculation]);
+    HistoryService.addToHistory(calculation);
   };
 
   const firstNumberDisplay = () => {
@@ -61,7 +71,7 @@ export default function MyKeyboard() {
   };
 
   const getResult = () => {
-    let calculation = `${secondNumber} ${operation} ${firstNumber}`;
+    let calculation = `${secondNumber}${operation}${firstNumber}`;
     switch (operation) {
       case "+":
         clear();
@@ -84,16 +94,12 @@ export default function MyKeyboard() {
         setResult(0);
         break;
     }
+    console.log("Added new calculation", calculation);
     addToHistory(calculation);
   };
 
   return (
     <View style={Styles.viewBottom}>
-      <ScrollView style={{ maxHeight: "70%" }}>
-        {history.map((calculation, index) => (
-          <Text key={index}>{calculation}</Text>
-        ))}
-      </ScrollView>
       <View
         style={{
           height: 120,
