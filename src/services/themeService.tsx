@@ -1,18 +1,16 @@
-import { MMKV } from "react-native-mmkv";
-import { storageService } from "./storageService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-class ThemeService {
+export default class ThemeService {
     static themes = ['light', 'dark']
-    static storage: MMKV = storageService.storage;
-    public static get theme(): String {
-        const theme = this.storage.getString('theme');
+    public static async getTheme(): Promise<string> {
+        const theme = await AsyncStorage.getItem('theme');
         return theme && this.themes.includes(theme) ? theme : 'light';
     }
-    public static setTheme(theme: string): boolean {
+    public static async setTheme(theme: string): Promise<boolean> {
         if (!this.themes.includes(theme)) {
             return false
         }
-        this.storage.set('theme', theme);
+        await AsyncStorage.setItem('theme', theme);
         return true;
     }
 }
