@@ -1,9 +1,18 @@
 # Hello
+## Nhóm 
+Huỳnh Văn Thoại - 22521425 [HuynhThoaiK27](https://github.com/HuynhThoaiK27)
+
+Nguyễn Xuân Bách - 22520093 [bach04py](https://github.com/bach04py)
+
+Phan Thành Phúc - 21522477: [tumble29](https://github.com/tumble29)
 
 ## This is a Calculator
 
-![Simulator Screen Shot - iPhone 13 - 2022-02-24 at 02 25 17](https://user-images.githubusercontent.com/43630417/155477881-5bd39925-55c3-4e22-9966-9ebc0976a863.png)
-![Simulator Screen Shot - iPhone 13 - 2022-02-24 at 02 28 36](https://user-images.githubusercontent.com/43630417/155478260-05e30110-3144-4e99-8690-048bc8a00c8f.png)
+### Want to clone this project?
+At the root folder run:
+```
+yarn && expo start
+```
 
 ### Features
 - Dark mode
@@ -14,8 +23,13 @@
 - React Native Expo
 - Typescript
 
-### Want to clone this project?
-At the root folder run:
-```
-yarn && expo start
-```
+### UI
+
+#### Light Mode
+<img width="559" alt="Screenshot 2024-11-18 at 20 11 38" src="https://github.com/user-attachments/assets/58af984e-0689-4baa-b5b4-65693fe17f84">
+
+#### Dark Mode
+<img width="559" alt="Screenshot 2024-11-18 at 20 13 30" src="https://github.com/user-attachments/assets/ffdc6895-ff84-4f39-8297-e376308f578d">
+
+#### History View
+<img width="559" alt="Screenshot 2024-11-18 at 20 13 39" src="https://github.com/user-attachments/assets/67e7595b-1487-4e58-9c8b-a155c24fbaa4">
